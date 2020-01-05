@@ -34,20 +34,12 @@ target 'PIB_App' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
+
   target 'PIB_AppTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
   use_native_modules!
-end
-
-target 'PIB_App-tvOS' do
-  # Pods for PIB_App-tvOS
-
-  target 'PIB_App-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

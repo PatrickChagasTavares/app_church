@@ -1,59 +1,77 @@
 import React from 'react';
+import {Image, Dimensions, Text, View} from 'react-native';
+import IconCross from 'react-native-vector-icons/FontAwesome5';
+import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {
-  Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar,
-} from 'react-native';
+import logo from '~/assets/Logo_white.png';
+import Background from '~/components/background';
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  fileName: {
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-  instructions: {
-    color: '#DDD',
-    fontSize: 14,
-    marginTop: 20,
-    textAlign: 'center',
-  },
-  logo: {
-    height: Dimensions.get('window').height * 0.11,
-    marginVertical: Dimensions.get('window').height * 0.11,
-    width: Dimensions.get('window').height * 0.11 * (1950 / 662),
-  },
-  welcome: {
-    color: '#fff',
-    fontSize: 22,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+import {Container} from './styles';
 
-const Main = () => (
-  <ImageBackground
-    source={{
-      uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
-    }}
-    style={styles.container}
-    resizeMode="cover"
-  >
-    <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-    <Image
-      source={{
-        uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/rocketseat_logo.png',
-      }}
-      style={styles.logo}
-      resizeMode="contain"
-    />
-    <Text style={styles.welcome}>Bem-vindo ao Template Avançado!</Text>
-    <Text style={styles.instructions}>Essa é a tela principal da sua aplicação =)</Text>
-    <Text style={styles.instructions}>Você pode editar a tela no arquivo:</Text>
-    <Text style={[styles.instructions, styles.fileName]}>src/pages/Main/index.js</Text>
-  </ImageBackground>
-);
+const {width} = Dimensions.get('window');
 
-export default Main;
+export default function Main() {
+  //celtic-cross
+  const date = new Date();
+
+  return (
+    <Background>
+      <Container>
+        <Image
+          source={logo}
+          style={{width: width * 0.5, height: width * 0.5}}
+        />
+        <Text
+          style={{
+            fontSize: 14,
+            color: '#000',
+            fontWeight: 'bold',
+            marginTop: 10,
+          }}>
+          Viagem Missionaria {date.getFullYear()}
+        </Text>
+
+        <View
+          style={{
+            marginTop: 15,
+          }}>
+          <IconCross.Button
+            name="cross"
+            backgroundColor="#3b9eff"
+            color="#fff"
+            borderRadius={10}
+            onPress={() => {}}>
+            Ação Social
+          </IconCross.Button>
+          <View style={{marginTop: 10}}>
+            <IconMC.Button
+              name="baby"
+              backgroundColor="#3b9eff"
+              color="#fff"
+              borderRadius={10}
+              onPress={() => {}}>
+              Crianças
+            </IconMC.Button>
+          </View>
+          <View style={{marginTop: 10}}>
+            <IconMC.Button
+              name="door-open"
+              backgroundColor="#3b9eff"
+              color="#fff"
+              borderRadius={10}
+              onPress={() => {}}>
+              Crianças
+            </IconMC.Button>
+          </View>
+        </View>
+
+        {/* <View>
+          <Icon.Button
+            name="facebook"
+            backgroundColor="#3b5998"
+            onPress={() => {}}
+          /> */}
+      </Container>
+    </Background>
+  );
+}
