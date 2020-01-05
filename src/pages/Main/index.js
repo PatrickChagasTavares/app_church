@@ -2,6 +2,7 @@ import React from 'react';
 import {Image, Dimensions, Text, View} from 'react-native';
 import IconCross from 'react-native-vector-icons/FontAwesome5';
 import IconMC from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconSetting from 'react-native-vector-icons/AntDesign';
 
 import logo from '~/assets/Logo_white.png';
 import Background from '~/components/background';
@@ -10,7 +11,7 @@ import {Container} from './styles';
 
 const {width} = Dimensions.get('window');
 
-export default function Main() {
+export default function Main({navigation}) {
   //celtic-cross
   const date = new Date();
 
@@ -40,7 +41,7 @@ export default function Main() {
             backgroundColor="#3b9eff"
             color="#fff"
             borderRadius={10}
-            onPress={() => {}}>
+            onPress={() => navigation.navigate('Social')}>
             Ação Social
           </IconCross.Button>
           <View style={{marginTop: 10}}>
@@ -60,17 +61,20 @@ export default function Main() {
               color="#fff"
               borderRadius={10}
               onPress={() => {}}>
-              Crianças
+              Porta em Porta
             </IconMC.Button>
           </View>
+          <View style={{marginTop: 10}}>
+            <IconSetting.Button
+              name="setting"
+              backgroundColor="#3b9eff"
+              color="#fff"
+              borderRadius={10}
+              onPress={() => navigation.navigate('Settings')}>
+              Configurações
+            </IconSetting.Button>
+          </View>
         </View>
-
-        {/* <View>
-          <Icon.Button
-            name="facebook"
-            backgroundColor="#3b5998"
-            onPress={() => {}}
-          /> */}
       </Container>
     </Background>
   );

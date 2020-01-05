@@ -1,4 +1,5 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 
 import '~/config/ReactotronConfig';
 
@@ -9,6 +10,7 @@ import Routes from '~/routes';
 
 const App = () => (
   <Provider store={store}>
+    <StatusBar barStyle="light-content" backgroundColor="#0471C6" />
     <Routes />
   </Provider>
 );
