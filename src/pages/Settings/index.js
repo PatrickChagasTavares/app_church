@@ -1,33 +1,63 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {View, Text, TextInput} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {View, Text, Alert} from 'react-native';
 import IconSend from 'react-native-vector-icons/MaterialCommunityIcons';
+import {useDispatch, useSelector} from 'react-redux';
 
 import Background from '~/components/background';
 
 import {Container, Form, FormInput, SaveButton} from './styles';
 
+import {configSaveRequest} from '~/store/modules/config/actions';
+
 export default function Settings(props) {
-  console.tron.log(props);
   const [protocol, setProtocol] = useState('');
   const [address, setAddress] = useState('');
   const [door, setDoor] = useState('');
   const [route, setRoute] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.config.loading);
+
   const enderecoRef = useRef();
   const portaRef = useRef();
   const rotaRef = useRef();
   const passwordRef = useRef();
 
-  function handleSave() {
-    let data = {};
-    data.protocol = protocol;
-    data.address = address;
-    data.door = door;
-    data.route = route;
-    data.password = password;
+  function ValidData() {
+    if (protocol.length === 0 || protocol !== ('http' || 'https')) {
+      Alert.alert('Erro', 'Campo protocolo é inválido.');
+      return false;
+    } else {
+      if (address.length === 0) {
+        Alert.alert('Erro', 'Campo endereço é inválido.');
+        return false;
+      } else {
+        if (door.length === 0) {
+          Alert.alert('Erro', 'Campo porta de conexão é inválido.');
+          return false;
+        } else {
+          if (route.length === 0) {
+            Alert.alert('Erro', 'Campo rota é inválido.');
+            return false;
+          } else {
+            if (password.length === 0) {
+              Alert.alert('Erro', 'Campo senha é inválido.');
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
 
-    console.tron.log(data);
+  function handleSave() {
+    if (ValidData()) {
+      dispatch(configSaveRequest(protocol, address, door, route, password));
+    } else {
+      return;
+    }
   }
 
   return (
@@ -39,8 +69,9 @@ export default function Settings(props) {
         <Text>Configurações para envio dos dados</Text>
 
         <Form>
+          <Text>Tipo de protocolo:</Text>
           <FormInput
-            placeholder="Tipo de protocolo:"
+            placeholder="http"
             autoCorrect={false}
             autoCapitalize="none"
             value={protocol}
@@ -48,8 +79,9 @@ export default function Settings(props) {
             onSubmitEditing={() => enderecoRef.current.focus()}
             onChangeText={e => setProtocol(e)}
           />
+          <Text>Endereço de conexão:</Text>
           <FormInput
-            placeholder="Endereço:"
+            placeholder="localhost"
             autoCorrect={false}
             autoCapitalize="none"
             value={address}
@@ -58,8 +90,9 @@ export default function Settings(props) {
             onSubmitEditing={() => portaRef.current.focus()}
             onChangeText={e => setAddress(e)}
           />
+          <Text>Porta:</Text>
           <FormInput
-            placeholder="Porta:"
+            placeholder="8080"
             autoCorrect={false}
             autoCapitalize="none"
             value={door}
@@ -68,14 +101,17 @@ export default function Settings(props) {
             onSubmitEditing={() => rotaRef.current.focus()}
             onChangeText={e => setDoor(e)}
           />
+          <Text>Nome da rota:</Text>
           <FormInput
-            placeholder="Rota:"
+            placeholder="PIBVV"
             value={route}
             returnKeyType="next"
+            autoCapitalize="none"
             ref={rotaRef}
             onSubmitEditing={() => passwordRef.current.focus()}
             onChangeText={e => setRoute(e)}
           />
+          <Text>Senha de conexão:</Text>
           <FormInput
             placeholder="Senha:"
             secureTextEntry
@@ -85,7 +121,14 @@ export default function Settings(props) {
             onChangeText={e => setPassword(e)}
             onSubmitEditing={handleSave}
           />
-          <SaveButton>Salvar</SaveButton>
+          <View
+            style={{
+              display: 'flex',
+            }}>
+            <SaveButton loading={loading} onPress={handleSave}>
+              Salvar e Enviar
+            </SaveButton>
+          </View>
         </Form>
       </Container>
     </Background>

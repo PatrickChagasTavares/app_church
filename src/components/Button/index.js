@@ -9,7 +9,7 @@ export default function Button({children, loading, Icon, ...rest}) {
   return (
     <Container {...rest}>
       {loading ? (
-        <ActivityIndicator size="smaill" color="#fff" />
+        <ActivityIndicator size="small" color="#fff" />
       ) : (
         <>
           {/* {Icon && <View>{Icon}</View>} */}
