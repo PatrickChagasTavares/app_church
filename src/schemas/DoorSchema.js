@@ -2,7 +2,7 @@ export default class DoorSchema {
   static schema = {
     name: 'DoorToDoor',
     primaryKey: 'id',
-    propertie: {
+    properties: {
       id: {type: 'int', indexed: true},
       data: 'date',
       nameTribe: 'string',

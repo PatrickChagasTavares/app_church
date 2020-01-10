@@ -2,11 +2,11 @@ export default class ChildrenSchema {
   static schema = {
     name: 'children',
     primaryKey: 'id',
-    propertie: {
+    properties: {
       id: {type: 'int', indexed: true},
       data: 'date',
-      total: 'string',
-      Note: 'string',
+      total: 'int',
+      note: 'string',
     },
   };
 }
