@@ -2,6 +2,7 @@ import React, {useState, useRef} from 'react';
 import {View, Text, Alert} from 'react-native';
 import IconSend from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
+// import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 import Background from '~/components/background';
 
@@ -15,6 +16,11 @@ export default function Settings(props) {
   const [door, setDoor] = useState('');
   const [route, setRoute] = useState('');
   const [password, setPassword] = useState('');
+  // const [selected, setSelected] = useState([]);
+  // const list = [
+  //   {id: 1, name: 'http'},
+  //   {id: 2, name: 'https'},
+  // ];
 
   const dispatch = useDispatch();
   const loading = useSelector(state => state.config.loading);
@@ -69,6 +75,16 @@ export default function Settings(props) {
         <Text>Configurações para envio dos dados</Text>
 
         <Form>
+          {/* <View> */}
+          {/* <SectionedMultiSelect
+            items={list}
+            uniqueKey="id"
+            selectText="Selecione um protocolo"
+            onSelectedItemsChange={e => setSelected(e)}
+            selectedItems={selected}
+            single={true}
+          /> */}
+          {/* </View> */}
           <Text>Tipo de protocolo:</Text>
           <FormInput
             placeholder="http"
