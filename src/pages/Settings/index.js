@@ -111,6 +111,7 @@ export default function Settings(props) {
             placeholder="8080"
             autoCorrect={false}
             autoCapitalize="none"
+            keyboardType="numeric"
             value={door}
             returnKeyType="next"
             ref={portaRef}
