@@ -5,6 +5,7 @@ import IconDate from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
 
 import Background from '~/components/background';
+import Send_Clear from '~/components/Send_Clear';
 
 import getRealm from '~/services/realm';
 
@@ -121,14 +122,11 @@ export default function Children() {
             onChangeText={e => setNote(e)}
           />
 
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <CancelButton disabled={loading} onPress={handleClear}>
-              <Text style={{color: '#fff'}}>Limpar</Text>
-            </CancelButton>
-            <SaveButton disabled={loading} onPress={handleSave}>
-              <Text style={{color: '#fff'}}>Salvar</Text>
-            </SaveButton>
-          </View>
+          <Send_Clear
+            loading={loading}
+            handleClear={handleClear}
+            handleSave={handleSave}
+          />
         </Form>
       </Container>
     </Background>

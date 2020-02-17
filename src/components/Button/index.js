@@ -1,11 +1,10 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {memo} from 'react';
 import {ActivityIndicator} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {Container, Text} from './styles';
 
-export default function Button({children, loading, Icon, ...rest}) {
+function Button({children, loading, Icon, ...rest}) {
   return (
     <Container {...rest}>
       {loading ? (
@@ -23,10 +22,10 @@ export default function Button({children, loading, Icon, ...rest}) {
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   loading: PropTypes.bool,
-  // Icon: PropTypes.object,
 };
 
 Button.defaultProps = {
   loading: false,
-  // Icon: null,
 };
+
+export default memo(Button);
