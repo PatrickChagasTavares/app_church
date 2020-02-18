@@ -60,7 +60,7 @@ export default function Main({navigation}) {
               backgroundColor="#3b9eff"
               color="#fff"
               borderRadius={10}
-              onPress={() => {}}>
+              onPress={() => navigation.navigate('Door')}>
               Porta em Porta
             </IconMC.Button>
           </View>
