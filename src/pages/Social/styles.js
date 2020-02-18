@@ -18,7 +18,9 @@ export const Logo = styled.View`
 
 export const Line = styled.View`
   margin-top: 1px;
-  border: 0.8px solid #fff;
+  border-style: solid;
+  border-bottom-color: #fff;
+  border-bottom-width: 1px;
   width: 100%;
 `;
 
@@ -58,13 +60,13 @@ export const FormDataAddress = styled.View`
 `;
 
 export const TInput = styled.TextInput.attrs({
-  placeholderTextColor: 'rgba(255,255,255,0.5)',
+  placeholderTextColor: 'rgba(0,0,0,0.5)',
 })`
   width: 45%;
   font-size: 15px;
   /* margin-left: 10px; */
   background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
-  color: #fff;
-  padding-left: 10px;
+  color: #000;
+  padding-left: 20px;
 `;

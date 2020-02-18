@@ -11,7 +11,15 @@ import Send_Clear from '~/components/Send_Clear';
 import SelectPicker from '~/components/SelectPicker';
 import SelectPickerMultiple from '~/components/SelectPickerMultiple';
 
-import {City, Cravinhos, Serrana, Years, NeedNew, NeedOld} from '~/data.js';
+import {
+  Actions,
+  City,
+  Cravinhos,
+  Serrana,
+  Years,
+  NeedNew,
+  NeedOld,
+} from '~/data.js';
 
 import {
   Container,
@@ -38,6 +46,7 @@ export default function Social({navigation}) {
   const [complement, setComplement] = useState('');
   const [years, setYears] = useState([]);
   const [need, setNeed] = useState([]);
+  const [actions, setActions] = useState([]);
 
   function handleDateConfirm(dateNew) {
     setDate(moment(dateNew).format('DD/MM/YYYY'));
@@ -163,22 +172,37 @@ export default function Social({navigation}) {
           )}
 
           {years.length > 0 && (
-            // <View>
-            <SelectPickerMultiple
-              itens={Years[years - 1].type > 17 ? NeedOld : NeedNew}
-              placeholder="Necessidades"
-              setItem={setNeed}
-              itemSelected={need}
-              single={false}
-              showDropDowns={true}
-            />
-            // </View>
+            <>
+              <SelectPickerMultiple
+                itens={Years[years - 1].type > 17 ? NeedOld : NeedNew}
+                placeholder="Necessidades"
+                setItem={setNeed}
+                itemSelected={need}
+                single={false}
+                showDropDowns={true}
+              />
+              <Line />
+            </>
+          )}
+
+          {years.length > 0 && (
+            <>
+              <SelectPickerMultiple
+                itens={Actions}
+                placeholder="Acão"
+                setItem={setActions}
+                itemSelected={actions}
+                single={false}
+                showDropDowns={true}
+              />
+              <Line />
+            </>
           )}
 
           <Send_Clear
             loading={loading}
             handleClear={() => handleClear()}
-            handleSave={() => {}}
+            handleSave={() => handleSave()}
           />
         </Form>
       </Container>
