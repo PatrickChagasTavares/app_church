@@ -1,11 +1,10 @@
 export default class DoorSchema {
   static schema = {
-    name: 'DoorToDoor',
+    name: 'Social',
     primaryKey: 'id',
     properties: {
       id: {type: 'int', indexed: true},
       data: 'date',
-      nameTribe: 'string',
       namePerson: 'string',
       address: 'string',
       type: {type: 'string', default: 'LV'},
@@ -21,6 +20,15 @@ export default class DoorSchema {
       reconciled: {type: 'string', default: ''},
       visit: {type: 'string', default: ''},
       acceptChrist: {type: 'string', default: ''},
+      medical: {type: 'string', default: ''},
+      optician: {type: 'string', default: ''},
+      pressure: {type: 'string', default: ''},
+      glucose: {type: 'string', default: ''},
+      aesthetics: {type: 'string', default: ''},
+      cuttingHair: {type: 'string', default: ''},
+      hairstyle: {type: 'string', default: ''},
+      Nail: {type: 'string', default: ''},
+      Eyebrow: {type: 'string', default: ''},
       note: {type: 'string', default: ''},
     },
   };

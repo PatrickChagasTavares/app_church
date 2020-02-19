@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, View, ActivityIndicator, Alert} from 'react-native';
+import {ActivityIndicator, Alert} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import IconDate from 'react-native-vector-icons/MaterialIcons';
 import moment from 'moment';
@@ -27,7 +27,7 @@ export default function Children() {
   const [loading, setLoading] = useState(false);
 
   function handleDateConfirm(dateNew) {
-    setDate(moment(dateNew).format('DD/MM/YYYY'));
+    setDate(dateNew);
     setOpenCalendar(false);
   }
   function handleDateCancel() {
@@ -35,6 +35,8 @@ export default function Children() {
   }
 
   async function handleSaveDB() {
+    console.tron.log(date);
+    console.tron.log(typeof date);
     const data = {
       id: moment().valueOf(),
       data: date,
@@ -42,6 +44,8 @@ export default function Children() {
       note: note || '',
     };
     const realm = await getRealm();
+
+    console.tron.log(realm.path);
 
     realm.write(() => {
       realm.create('children', data);
@@ -63,9 +67,11 @@ export default function Children() {
       }
       handleSaveDB();
       handleClear();
-      // Alert.alert('PIB Valo Velho', 'Da');
+      Alert.alert('PIB Valo Velho', 'Dados salvos com sucesso.');
 
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     } catch (error) {
       Alert.alert('PIB Valo Velho', 'Erro ao salvar dados');
       setLoading(false);
@@ -96,7 +102,7 @@ export default function Children() {
             color="#3b9eff"
             borderRadius={10}
             onPress={() => setOpenCalendar(true)}>
-            {date ? date : '* Selecione uma data'}
+            {date ? moment(date).format('DD/MM/YYYY') : '* Selecione uma data'}
           </IconDate.Button>
 
           <DateTimePicker

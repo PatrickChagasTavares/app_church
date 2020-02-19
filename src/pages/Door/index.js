@@ -181,7 +181,7 @@ export default function Social({navigation}) {
           {years.length > 0 && (
             <>
               <SelectPickerMultiple
-                itens={Years[years - 1].type > 17 ? NeedOld : NeedNew}
+                itens={parseInt(Years[years - 1].type) > 17 ? NeedOld : NeedNew}
                 placeholder="Necessidades"
                 setItem={setNeed}
                 itemSelected={need}
