@@ -267,6 +267,7 @@ export default function Social({navigation}) {
         handleClear();
         Alert.alert('PIB Valo Velho', 'Dados salvos com sucesso.');
       }
+      setLoading(false);
     } catch (error) {
       console.tron.log('error: ', error);
       Alert.alert('PIB Valo Velho', 'Erro ao salvar dados');
