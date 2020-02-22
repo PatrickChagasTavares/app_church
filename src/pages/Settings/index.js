@@ -1,12 +1,18 @@
 import React, {useState, useRef} from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert, ActivityIndicator} from 'react-native';
 import IconSend from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useDispatch, useSelector} from 'react-redux';
 // import SectionedMultiSelect from 'react-native-sectioned-multi-select';
 
 import Background from '~/components/background';
 
-import {Container, Form, FormInput, SaveButton} from './styles';
+import {
+  Container,
+  Form,
+  FormInput,
+  ContainerButton,
+  SaveButton,
+} from './styles';
 
 import {configSaveRequest} from '~/store/modules/config/actions';
 
@@ -138,13 +144,14 @@ export default function Settings(props) {
             onChangeText={e => setPassword(e)}
             onSubmitEditing={handleSave}
           />
-          <View
-            style={{
-              display: 'flex',
-            }}>
-            <SaveButton loading={loading} onPress={handleSave}>
-              Salvar e Enviar
-            </SaveButton>
+          <View>
+            <ContainerButton onPress={() => handleSave()}>
+              {loading ? (
+                <ActivityIndicator size="small" color="#fff" />
+              ) : (
+                <SaveButton>Enviar dados</SaveButton>
+              )}
+            </ContainerButton>
           </View>
         </Form>
       </Container>

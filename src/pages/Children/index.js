@@ -44,7 +44,6 @@ export default function Children() {
       note: note || '',
     };
     const realm = await getRealm();
-
     console.tron.log(realm.path);
 
     realm.write(() => {

@@ -3,6 +3,7 @@ import {ActivityIndicator, Alert} from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import IconDate from 'react-native-vector-icons/MaterialIcons';
 import IconChurch from 'react-native-vector-icons/FontAwesome5';
+import IconHelp from 'react-native-vector-icons/Feather';
 
 import moment from 'moment';
 
@@ -231,7 +232,21 @@ export default function Social({navigation}) {
           {loading ? (
             <ActivityIndicator size="large" color="#fff" />
           ) : (
-            <IconChurch name="door-open" size={40} color="#fff" />
+            <>
+              <IconChurch
+                name="door-open"
+                size={40}
+                color="#fff"
+                style={{marginRight: 50}}
+              />
+              <IconHelp
+                name="help-circle"
+                size={40}
+                color="#fff"
+                style={{marginLeft: 50}}
+                onPress={() => navigation.navigate('Information')}
+              />
+            </>
           )}
         </Logo>
 

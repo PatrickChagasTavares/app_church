@@ -14,6 +14,10 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 
 export const Logo = styled.View`
   margin-top: 30px;
+
+  flex-direction: row;
+
+  justify-content: space-between;
 `;
 
 export const Line = styled.View`
