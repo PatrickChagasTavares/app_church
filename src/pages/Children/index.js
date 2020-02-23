@@ -43,13 +43,15 @@ export default function Children() {
       total: parseInt(totalChildren),
       note: note || '',
     };
-    const realm = await getRealm();
-    console.tron.log(realm.path);
 
     try {
+      const realm = await getRealm();
+      console.tron.log(realm.path);
+
       realm.write(() => {
         realm.create('children', data);
       });
+      realm.close();
     } catch (error) {
       Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
     }

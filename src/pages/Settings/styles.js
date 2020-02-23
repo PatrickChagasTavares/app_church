@@ -7,8 +7,13 @@ export const Container = styled.View`
   justify-content: center;
   align-items: center;
 `;
-export const Form = styled.View`
+export const Form = styled.ScrollView.attrs({
+  alwaysBounceHorizontal: false,
+  alwaysBounceVertical: true,
+})`
+  width: 100%;
   margin-top: 50px;
+  /* padding-bottom: 30px; */
   padding: 0 50px;
 `;
 export const FormInput = styled(Input)`
