@@ -203,9 +203,13 @@ export default function Social({navigation}) {
 
     const realm = await getRealm();
 
-    realm.write(() => {
-      realm.create('DoorToDoor', data);
-    });
+    try {
+      realm.write(() => {
+        realm.create('DoorToDoor', data);
+      });
+    } catch (error) {
+      Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
+    }
   }
 
   async function handleSave() {

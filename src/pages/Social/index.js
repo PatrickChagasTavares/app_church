@@ -253,9 +253,13 @@ export default function Social({navigation}) {
 
     console.tron.log('realm: ', realm.path);
 
-    realm.write(() => {
-      realm.create('Social', data);
-    });
+    try {
+      realm.write(() => {
+        realm.create('Social', data);
+      });
+    } catch (error) {
+      Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
+    }
   }
 
   async function handleSave() {

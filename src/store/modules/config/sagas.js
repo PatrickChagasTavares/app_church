@@ -47,8 +47,12 @@ export function* SaveData({payload}) {
 
 async function getData(database) {
   const realm = await getRealm();
-
-  const data = realm.objects(database).sorted('id', true);
+  let data = {};
+  try {
+    data = realm.objects(database).sorted('id', true);
+  } catch (error) {
+    Alert.alert('PIB Valo Velho', 'Erro ao trazer dados.');
+  }
 
   let array = Array.from(data);
 

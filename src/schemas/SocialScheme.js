@@ -7,7 +7,7 @@ export default class DoorSchema {
       data: 'date',
       namePerson: 'string',
       address: 'string',
-      type: {type: 'string', default: 'LV'},
+      type: {type: 'string', default: 'AS'},
       age: {type: 'string', default: ''},
       bible: {type: 'string', default: ''},
       evangelical: {type: 'string', default: ''},

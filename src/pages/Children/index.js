@@ -46,9 +46,13 @@ export default function Children() {
     const realm = await getRealm();
     console.tron.log(realm.path);
 
-    realm.write(() => {
-      realm.create('children', data);
-    });
+    try {
+      realm.write(() => {
+        realm.create('children', data);
+      });
+    } catch (error) {
+      Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
+    }
   }
 
   async function handleSave() {
