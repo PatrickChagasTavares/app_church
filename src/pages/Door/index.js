@@ -201,12 +201,12 @@ export default function Social({navigation}) {
       note: note || '',
     };
 
-    const realm = await getRealm();
-
     try {
+      const realm = await getRealm();
       realm.write(() => {
         realm.create('DoorToDoor', data);
       });
+      realm.close();
     } catch (error) {
       Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
     }
@@ -223,7 +223,6 @@ export default function Social({navigation}) {
       }
       setLoading(false);
     } catch (error) {
-      console.tron.log('error: ', error);
       Alert.alert('PIB Valo Velho', 'Erro ao salvar dados');
       setLoading(false);
     }

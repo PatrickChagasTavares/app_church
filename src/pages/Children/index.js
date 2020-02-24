@@ -35,8 +35,6 @@ export default function Children() {
   }
 
   async function handleSaveDB() {
-    console.tron.log(date);
-    console.tron.log(typeof date);
     const data = {
       id: moment().valueOf(),
       data: date,
@@ -44,17 +42,17 @@ export default function Children() {
       note: note || '',
     };
 
-    try {
-      const realm = await getRealm();
-      console.tron.log(realm.path);
-
-      realm.write(() => {
-        realm.create('children', data);
+    getRealm()
+      .then(realm => {
+        realm.write(() => {
+          realm.create('children', data);
+        });
+        realm.close();
+      })
+      .catch(error => {
+        Alert.alert('error', error);
+        Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
       });
-      realm.close();
-    } catch (error) {
-      Alert.alert('PIB Valo Velho', 'Erro ao savar dados.');
-    }
   }
 
   async function handleSave() {
