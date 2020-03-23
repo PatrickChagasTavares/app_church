@@ -131,8 +131,8 @@ android {
         applicationId "com.pib_app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 17
+        versionName "17.0"
     }
     splits {
         abi {
@@ -179,7 +179,6 @@ android {
 }
 
 dependencies {
-    implementation project(':realm')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

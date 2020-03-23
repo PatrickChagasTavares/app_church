@@ -6,14 +6,11 @@ import {configSaveSuccess, configSaveFailure} from '../config/actions';
 import getRealm from '~/services/realm';
 
 export function* SaveData({payload}) {
-  console.tron.log(payload);
   const {protocol, address, door, route} = payload;
 
   const api = axios.create({
     baseURL: `${protocol}://${address}:${door}`,
   });
-
-  // console.tron.log('baseURL: ', `${protocol}://${address}:${door}/${route}`);
 
   const DoorToDoor = yield getData('DoorToDoor');
   const Social = yield getData('Social');
@@ -30,7 +27,6 @@ export function* SaveData({payload}) {
         children: Object.entries(children),
       });
 
-      console.tron.log('response: ', response);
       clearData('DoorToDoor');
       clearData('Social');
       clearData('children');
@@ -38,7 +34,6 @@ export function* SaveData({payload}) {
       Alert.alert('PIB Valo Velho', 'Dados salvos com sucesso.');
       yield put(configSaveSuccess());
     } catch (error) {
-      console.tron.log('error: ', error);
       Alert.alert('PIB Valo Velho', 'Erro ao enviar dados.');
       yield put(configSaveFailure());
     }
